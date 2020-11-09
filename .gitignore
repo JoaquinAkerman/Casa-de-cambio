@@ -1,0 +1,12 @@
+
+node_modules/@types/jquery/dist/jquery.slim.d.ts
+node_modules/@types/jquery/index.d.ts
+node_modules/@types/jquery/JQuery.d.ts
+node_modules/jquery/src/core/readyException.js
+node_modules/jquery/src/core/stripAndCollapse.js
+node_modules/jquery/src/core/ready.js
+node_modules/jquery/src/core/var/rsingleTag.js
+node_modules/jquery/src/css.js
+node_modules/jquery/src/css/adjustCSS.js
+node_modules
+debug.log
