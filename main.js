@@ -1,4 +1,5 @@
 "use strict";
+
 ///<reference types="jquery"/>
 let paginaAPI = "https://api.exchangeratesapi.io/latest";
 
@@ -37,7 +38,13 @@ function cargarAPI() {
 				}
 			}
 			$("#boton-cambiar-moneda").on("click", cambiarMonedaBase);
-		});
+		})
+		.catch((error) =>
+			console.error(
+				"falló cargar la tabla, intente más nuevamente",
+				error
+			)
+		);
 }
 
 cargarAPI();
