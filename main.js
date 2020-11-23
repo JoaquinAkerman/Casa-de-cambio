@@ -22,7 +22,7 @@ function armarTablaDeCambios(monedas, precio) {
 
 function cambiarMonedaBase(monedasValidas) {
 	let nuevaMonedaBase = $("#nueva-moneda").val();
-	console.log("me hicieron click");
+	console.log(monedasValidas);
 	for (let i = 0; i < monedasValidas.length; i++) {
 		if (nuevaMonedaBase === monedasValidas[i]) {
 			paginaAPI = `https://api.exchangeratesapi.io/latest?base=${nuevaMonedaBase}`;
@@ -31,7 +31,6 @@ function cambiarMonedaBase(monedasValidas) {
 			$("#lista-monedas").html("");
 			$("#nueva-moneda").val("");
 			cargarMonedas();
-			respuestaJSON.rates = "";
 			console.log("moneda validó correctamente");
 			break;
 		}
@@ -47,10 +46,9 @@ function cargarMonedas() {
 				Object.keys(respuestaJSON.rates),
 				Object.values(respuestaJSON.rates)
 			);
-			$("#boton-cambiar-moneda").on(
-				"click",
-				cambiarMonedaBase(respuestaJSON.rates)
-			);
+			$("#boton-cambiar-moneda").on("click", function () {
+				cambiarMonedaBase(Object.keys(respuestaJSON.rates));
+			});
 		})
 
 		.catch((error) =>
