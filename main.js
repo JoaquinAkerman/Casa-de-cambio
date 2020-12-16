@@ -21,11 +21,18 @@ function armarTablaDeCambios(monedas, precio) {
 	}
 }
 
-function cambiarMonedaBase(monedasValidas) {
-	const nuevaMonedaBase = $("#nueva-moneda").val();
+function cambiarMonedaBaseYFecha(monedasValidas) {
+	console.log("se activo la función cambiarMonedaBaseYFecha");
+	let nuevaMonedaBase = $("#nueva-moneda").val();
+	let nuevaFecha = $("#calendario").val();
+	let fechaPorDefault = "latest";
+	if (nuevaFecha != "") {
+		fechaPorDefault = nuevaFecha;
+	}
+
 	for (let i = 0; i < monedasValidas.length; i++) {
 		if (nuevaMonedaBase === monedasValidas[i]) {
-			paginaAPI = `https://api.exchangeratesapi.io/latest?base=${nuevaMonedaBase}`;
+			paginaAPI = `https://api.exchangeratesapi.io/${fechaPorDefault}?base=${nuevaMonedaBase}`;
 			$(".precio").remove();
 			$(".moneda").remove();
 			$("#lista-monedas").html("");
@@ -42,7 +49,7 @@ function definirFechaMaximaCalendario() {
 	calendario.attr("max", fechaActual[0]);
 }
 
-function cargarMonedas() {
+function cargarMonedas(paginaAPI) {
 	return fetch(paginaAPI)
 		.then((r) => r.json())
 		.catch((error) =>
@@ -57,13 +64,13 @@ function armarPagina(monedasJSON) {
 		Object.keys(monedasJSON.rates).sort(),
 		Object.values(monedasJSON.rates)
 	);
-	$("#boton-cambiar-moneda").on("click", () => {
-		cambiarMonedaBase(Object.keys(monedasJSON.rates));
+	$("#boton-actualizar-tabla").on("click", () => {
+		cambiarMonedaBaseYFecha(Object.keys(monedasJSON.rates));
 	});
 }
 
 function inicializar() {
-	cargarMonedas().then((cambios) => armarPagina(cambios));
+	cargarMonedas(paginaAPI).then((cambios) => armarPagina(cambios));
 }
 
 inicializar();

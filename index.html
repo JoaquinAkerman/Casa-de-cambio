@@ -20,24 +20,21 @@
 		<h3 id="descripcion"></h3>
 
 		<div>
-			Si desea otra moneda de base seleccione aquí
+			Seleccione moneda deseada aquí
 			<input id="nueva-moneda" list="lista-monedas" name="cambiar-base" />
-			<datalist id="lista-monedas"></datalist
-			><button
-				id="boton-cambiar-moneda"
-				type="button"
-				class="btn btn-primary"
-			>
-				Cambiar moneda
-			</button>
+			<datalist  id="lista-monedas"></datalist>
 		</div>
 		<br />
 		<div id="cambiar-fechas">
-			Para ver días anteriores seleccione aquí <input id="calendario" type="date">
-			<button type="button" id="boton-cambiar-fecha" class="btn btn-primary">Cambiar fecha</button>
-		</div>
-
+			Cambios de días anteriores seleccione aquí
+			<input id="calendario" type="date" />
+			<button id="boton-actualizar-tabla" type="button" class="btn btn-primary">
+				Actualizar tabla
+			</button>
+		</div >
+		
 		<div id="tabla-de-cambios" class="container">
+			
 			<div id="linea-1" class="row">
 				<div id="moneda" class="col-sm-6">Moneda</div>
 				<div id="precio" class="col-sm-6">precio</div>
