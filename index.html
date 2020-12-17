@@ -15,26 +15,35 @@
 	</head>
 
 	<body>
-		<h1>Casa de cambios</h1>
-		<h3 id="fecha">Cargando...</h3>
-		<h3 id="descripcion"></h3>
-
-		<div>
-			Seleccione moneda deseada aquí
-			<input id="nueva-moneda" list="lista-monedas" name="cambiar-base" />
-			<datalist  id="lista-monedas"></datalist>
-		</div>
+		<h1 class="text-center">Casa de cambios</h1>
+		<h3>
+			<div id="seleccion-de-moneda">
+				Seleccione moneda deseada aquí
+				<input
+					id="nueva-moneda"
+					list="lista-monedas"
+					name="cambiar-base"
+				/>
+				<datalist id="lista-monedas"> </datalist>
+			</div>
+			<div id="cambiar-fechas">
+				Cambios de días anteriores seleccione aquí
+				<input id="calendario" type="date" />
+				<button
+					id="boton-actualizar-tabla"
+					type="button"
+					class="btn btn-primary"
+				>
+					Actualizar tabla
+				</button>
+			</div>
+		</h3>
 		<br />
-		<div id="cambiar-fechas">
-			Cambios de días anteriores seleccione aquí
-			<input id="calendario" type="date" />
-			<button id="boton-actualizar-tabla" type="button" class="btn btn-primary">
-				Actualizar tabla
-			</button>
-		</div >
-		
+
+		<h3 class="text-center" id="fecha">Cargando...</h3>
+		<h3 class="text-center" id="descripcion"></h3>
+
 		<div id="tabla-de-cambios" class="container">
-			
 			<div id="linea-1" class="row">
 				<div id="moneda" class="col-sm-6">Moneda</div>
 				<div id="precio" class="col-sm-6">precio</div>
