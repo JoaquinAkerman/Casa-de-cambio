@@ -10,8 +10,6 @@ function mostrarDiaYMoneda(dia, moneda) {
 }
 
 function armarTablaDeCambios(monedasYPrecio) {
-	console.log(monedasYPrecio);
-
 	Object.keys(monedasYPrecio)
 		.sort()
 		.forEach(function (item) {
@@ -22,19 +20,7 @@ function armarTablaDeCambios(monedasYPrecio) {
 				`<li class="list-group-item precio">${monedasYPrecio[item]}</li>`
 			);
 			$("#lista-monedas").append(`<option value="${item}">`);
-
-			console.log(item, monedasYPrecio[item]);
-		}); // Donde data es tu objeto
-
-	/*for (let i = 0; i < monedas.length; i++) {
-		$("#moneda").append(
-			`<li class="list-group-item moneda">${monedas[i]}</li>`
-		);
-		$("#precio").append(
-			`<li class="list-group-item precio">${precio[i]}</li>`
-		);
-		$("#lista-monedas").append(`<option value="${monedas[i]}">`);
-	}*/
+		});
 }
 
 function definirFechaMaximaCalendario() {
