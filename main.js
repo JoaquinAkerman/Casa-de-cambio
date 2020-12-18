@@ -9,8 +9,24 @@ function mostrarDiaYMoneda(dia, moneda) {
 	$("#descripcion").text(`1 ${moneda} es igual a:`);
 }
 
-function armarTablaDeCambios(monedas, precio) {
-	for (let i = 0; i < monedas.length; i++) {
+function armarTablaDeCambios(monedasYPrecio) {
+	console.log(monedasYPrecio);
+
+	Object.keys(monedasYPrecio)
+		.sort()
+		.forEach(function (item) {
+			$("#moneda").append(
+				`<li class="list-group-item moneda">${item}</li>`
+			);
+			$("#precio").append(
+				`<li class="list-group-item precio">${monedasYPrecio[item]}</li>`
+			);
+			$("#lista-monedas").append(`<option value="${item}">`);
+
+			console.log(item, monedasYPrecio[item]);
+		}); // Donde data es tu objeto
+
+	/*for (let i = 0; i < monedas.length; i++) {
 		$("#moneda").append(
 			`<li class="list-group-item moneda">${monedas[i]}</li>`
 		);
@@ -18,7 +34,7 @@ function armarTablaDeCambios(monedas, precio) {
 			`<li class="list-group-item precio">${precio[i]}</li>`
 		);
 		$("#lista-monedas").append(`<option value="${monedas[i]}">`);
-	}
+	}*/
 }
 
 function definirFechaMaximaCalendario() {
@@ -86,11 +102,7 @@ function agregaClaseAlert(input) {
 function armarPagina(monedasJSON) {
 	mostrarDiaYMoneda(monedasJSON.date, monedasJSON.base);
 	definirFechaMaximaCalendario();
-	armarTablaDeCambios(
-		Object.keys(monedasJSON.rates),
-		Object.values(monedasJSON.rates)
-	);
-	console.log(monedasJSON.rates);
+	armarTablaDeCambios(monedasJSON.rates);
 	$("#boton-actualizar-tabla").on("click", () => {
 		cambiarMonedaBaseYFecha(Object.keys(monedasJSON.rates));
 	});
@@ -107,10 +119,7 @@ function actualizarContenido(monedasJSON) {
 	//copié la función Armarpagina, sin el comportamiento del boton actualizar-tabla, para que no corra 2 veces
 	mostrarDiaYMoneda(monedasJSON.date, monedasJSON.base);
 	definirFechaMaximaCalendario();
-	armarTablaDeCambios(
-		Object.keys(monedasJSON.rates),
-		Object.values(monedasJSON.rates)
-	);
+	armarTablaDeCambios(monedasJSON.rates);
 }
 
 inicializar();
