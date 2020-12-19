@@ -51,21 +51,17 @@ function cambiarMonedaBaseYFecha(monedasValidas) {
 
 	for (let i = 0; i < monedasValidas.length; i++) {
 		if (nuevaMonedaBase === monedasValidas[i]) {
-			paginaAPI = `https://api.exchangeratesapi.io/${fechaPorDefault}?base=${nuevaMonedaBase}`;
-			$(".precio").remove();
-			$(".moneda").remove();
-			$("#lista-monedas").html("");
 			monedaEsValida = "si";
+			paginaAPI = `https://api.exchangeratesapi.io/${fechaPorDefault}?base=${nuevaMonedaBase}`;
+			limpiarCampos();
 			actualizarPagina();
 			remueveClaseAlert(selectorDeMoneda);
 			break;
 		} else if (nuevaMonedaBase === "") {
+			monedaEsValida = "si";
 			nuevaMonedaBase = "EUR";
 			paginaAPI = `https://api.exchangeratesapi.io/${fechaPorDefault}?base=${nuevaMonedaBase}`;
-			$(".precio").remove();
-			$(".moneda").remove();
-			$("#lista-monedas").html("");
-			monedaEsValida = "si";
+			limpiarCampos();
 			actualizarPagina();
 			remueveClaseAlert(selectorDeMoneda);
 			break;
@@ -74,6 +70,12 @@ function cambiarMonedaBaseYFecha(monedasValidas) {
 	if (monedaEsValida === "no") {
 		agregaClaseAlert(selectorDeMoneda);
 	}
+}
+
+function limpiarCampos() {
+	$(".precio").remove();
+	$(".moneda").remove();
+	$("#lista-monedas").html("");
 }
 
 function remueveClaseAlert(input) {
