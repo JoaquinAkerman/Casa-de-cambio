@@ -2,8 +2,6 @@
 
 `/// <reference types="jquery" />`;
 
-let paginaAPI = "https://api.exchangeratesapi.io/latest";
-
 function mostrarDiaYMoneda(dia, moneda) {
 	$("#fecha").text(`En el día ${dia}`);
 	$("#descripcion").text(`1 ${moneda} es igual a:`);
@@ -30,6 +28,7 @@ function definirFechaMaximaCalendario() {
 }
 
 function cargarMonedas(paginaAPI) {
+	console.log("SE cargaron las monedas");
 	return fetch(paginaAPI)
 		.then((r) => r.json())
 
@@ -48,21 +47,23 @@ function cambiarMonedaBaseYFecha(monedasValidas) {
 	if (nuevaFecha != "") {
 		fechaPorDefault = nuevaFecha;
 	}
+	let nuevaPaginaAPI = `https://api.exchangeratesapi.io/${fechaPorDefault}?base=${nuevaMonedaBase}`;
 
 	for (let i = 0; i < monedasValidas.length; i++) {
 		if (nuevaMonedaBase === monedasValidas[i]) {
 			monedaEsValida = "si";
-			paginaAPI = `https://api.exchangeratesapi.io/${fechaPorDefault}?base=${nuevaMonedaBase}`;
 			limpiarCampos();
-			actualizarPagina();
+			cargarMonedas(nuevaPaginaAPI).then((cambios) =>
+				actualizarContenido(cambios)
+			);
 			remueveClaseAlert(selectorDeMoneda);
 			break;
 		} else if (nuevaMonedaBase === "") {
 			monedaEsValida = "si";
-			nuevaMonedaBase = "EUR";
-			paginaAPI = `https://api.exchangeratesapi.io/${fechaPorDefault}?base=${nuevaMonedaBase}`;
 			limpiarCampos();
-			actualizarPagina();
+			cargarMonedas(nuevaPaginaAPI).then((cambios) =>
+				actualizarContenido(cambios)
+			);
 			remueveClaseAlert(selectorDeMoneda);
 			break;
 		}
@@ -97,14 +98,11 @@ function armarPagina(monedasJSON) {
 }
 
 function inicializar() {
+	let paginaAPI = "https://api.exchangeratesapi.io/latest";
 	cargarMonedas(paginaAPI).then((cambios) => armarPagina(cambios));
 }
 
-function actualizarPagina() {
-	cargarMonedas(paginaAPI).then((cambios) => actualizarContenido(cambios));
-}
 function actualizarContenido(monedasJSON) {
-	//copié la función Armarpagina, sin el comportamiento del boton actualizar-tabla, para que no corra 2 veces
 	mostrarDiaYMoneda(monedasJSON.date, monedasJSON.base);
 	definirFechaMaximaCalendario();
 	armarTablaDeCambios(monedasJSON.rates);
