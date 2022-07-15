@@ -41,31 +41,21 @@ function actualizarContenido(monedasJSON) {
   mostrarDiaYMoneda(monedasJSON.date, monedasJSON.base);
   definirFechaMaximaCalendario();
   armarTablaDeCambios(monedasJSON.rates);
+  if ((monedasJSON.succes = true)) {
+    console.log('se cargo todo ok');
+  }
 }
 
-function mostrarAvisoCargando() {
-  const $divCargando = document.querySelector('#imagen-cargando');
-  $divCargando.classList.remove('oculto');
-}
-
-function ocultarAvisoCargando() {
-  const $divCargando = document.querySelector('#imagen-cargando');
-  $divCargando.classList.add('oculto');
-}
-
-function armarPagina(monedasJSON) {
+async function armarPagina(monedasJSON) {
   mostrarDiaYMoneda(monedasJSON.date, monedasJSON.base);
   definirFechaMaximaCalendario();
   armarTablaDeCambios(monedasJSON.rates);
   $('#boton-actualizar-tabla').on('click', () => {
-    console.log('me cliquearon');
     cambiarMonedaBaseYFecha(Object.keys(monedasJSON.rates));
   });
-  ocultarAvisoCargando();
 }
 
 export {
-  mostrarAvisoCargando,
   armarPagina,
   limpiarCampos,
   remueveClaseAlert,

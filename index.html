@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Casa de cambios</title>
+    <link rel="icon" type="image/x-icon" href="./imagenes/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
@@ -16,7 +17,13 @@
   </head>
 
   <body>
-    <h1 class="text-center">Casa de cambios</h1>
+    <h1 class="text-center">
+      Casa de cambios <img src="./imagenes/favicon.ico" alt="imagen-monedas" />
+    </h1>
+    <div class="loader-wrapper">
+      <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+
     <h3>
       <div id="seleccion-de-moneda">
         Seleccione moneda
@@ -24,7 +31,7 @@
           id="nueva-moneda"
           list="lista-monedas"
           name="cambiar-base"
-          value="EUR"
+          value=""
         />
         <datalist id="lista-monedas"> </datalist>
       </div>
@@ -46,15 +53,16 @@
     <h3 class="text-center" id="descripcion"></h3>
 
     <div id="tabla-de-cambios" class="container">
-      <div id="imagen-cargando" class="text-center">
-        <img src="./imagenes/loading.gif" alt="imagen-cargando" />
-      </div>
       <div id="linea-1" class="row">
         <div id="moneda" class="col-sm-6">Moneda</div>
         <div id="precio" class="col-sm-6">precio</div>
       </div>
     </div>
-
+    <script>
+      $(window).on('load', function () {
+        $('.loader-wrapper').fadeOut('slow');
+      });
+    </script>
     <script type="module" src="main.js"></script>
   </body>
 </html>

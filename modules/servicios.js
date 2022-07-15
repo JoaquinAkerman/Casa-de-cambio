@@ -6,8 +6,6 @@ import {
 } from './dom.js';
 
 async function cargarMonedas(paginaAPI) {
-  console.log('cargando monedas monedas');
-  console.log(paginaAPI);
   return fetch(paginaAPI)
     .then((r) => r.json())
 
