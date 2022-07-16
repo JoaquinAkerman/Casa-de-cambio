@@ -5,6 +5,8 @@ function mostrarDiaYMoneda(dia, moneda) {
   $('#descripcion').text(`1 ${moneda} es igual a:`);
 }
 
+function seleccionarMoneda(moneda) {}
+
 function definirFechaMaximaCalendario() {
   let fechaActual = new Date().toISOString().split('T');
   const calendario = $('#calendario');
@@ -13,15 +15,20 @@ function definirFechaMaximaCalendario() {
 
 function armarTablaDeCambios(monedasYPrecio) {
   Object.keys(monedasYPrecio)
-    .sort()
+    //.sort()
     .forEach(function (item) {
-      $('#moneda').append(`<li class="list-group-item moneda">${item}</li>`);
+      //$('#moneda').append(`<li class="list-group-item moneda">${item}</li>`);
+      $('#moneda').append(
+        `<button class="list-group-item moneda">${item}</button>`,
+      );
       $('#precio').append(
         `<li class="list-group-item precio">${monedasYPrecio[item]}</li>`,
       );
       $('#lista-monedas').append(`<option value="${item}">`);
     });
 }
+
+//  <button></button>
 
 function limpiarCampos() {
   $('.precio').remove();
