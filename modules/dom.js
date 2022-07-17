@@ -1,11 +1,11 @@
-import { cambiarMonedaBaseYFecha } from './servicios.js';
-
+import {
+  cambiarMonedaBaseYFecha,
+  cargarMonedasDesdeTabla,
+} from './servicios.js';
 function mostrarDiaYMoneda(dia, moneda) {
   $('#fecha').text(`En el día ${dia}`);
   $('#descripcion').text(`1 ${moneda} es igual a:`);
 }
-
-function seleccionarMoneda(moneda) {}
 
 function definirFechaMaximaCalendario() {
   let fechaActual = new Date().toISOString().split('T');
@@ -14,21 +14,29 @@ function definirFechaMaximaCalendario() {
 }
 
 function armarTablaDeCambios(monedasYPrecio) {
-  Object.keys(monedasYPrecio)
-    //.sort()
-    .forEach(function (item) {
-      //$('#moneda').append(`<li class="list-group-item moneda">${item}</li>`);
-      $('#moneda').append(
-        `<button class="list-group-item moneda">${item}</button>`,
-      );
-      $('#precio').append(
-        `<li class="list-group-item precio">${monedasYPrecio[item]}</li>`,
-      );
-      $('#lista-monedas').append(`<option value="${item}">`);
+  const $filaMoneda = $('#moneda');
+  const $filaPrecio = $('#precio');
+  const $listaMonedas = $('#lista-monedas');
+  Object.keys(monedasYPrecio).forEach((item) => {
+    const botonMoneda = document.createElement('button');
+    botonMoneda.innerText = item;
+    botonMoneda.classList = 'list-group-item moneda ';
+    botonMoneda.value = item;
+    botonMoneda.id = item;
+
+    botonMoneda.addEventListener('click', () => {
+      cargarMonedasDesdeTabla(`${botonMoneda.value}`);
     });
+    $filaMoneda.append(botonMoneda);
+
+    $filaPrecio.append(
+      `<li class="list-group-item precio">${monedasYPrecio[item]}</li>`,
+    );
+    $listaMonedas.append(`<option value="${item}">`);
+  });
 }
 
-//  <button></button>
+// Tengo que llamar a inicializar con la url, con el valor del boton clickeado
 
 function limpiarCampos() {
   $('.precio').remove();
@@ -48,9 +56,6 @@ function actualizarContenido(monedasJSON) {
   mostrarDiaYMoneda(monedasJSON.date, monedasJSON.base);
   definirFechaMaximaCalendario();
   armarTablaDeCambios(monedasJSON.rates);
-  if ((monedasJSON.succes = true)) {
-    console.log('se cargo todo ok');
-  }
 }
 
 async function armarPagina(monedasJSON) {

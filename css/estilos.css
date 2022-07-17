@@ -1,21 +1,29 @@
 
+
 #nueva-moneda {
   text-transform: uppercase;
+}
+
+.clikeado{
+  background-color:#a33f38
 }
 
 .oculto {
   display: none;
 }
-#bandera-de-moneda{size: 5px;
+#bandera-de-moneda {
+  size: 5px;
 }
-#moneda{
-font-size: 150;}
+#moneda {
+  font-size: 120;
+}
 body {
   margin: 0;
   padding: 0;
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(to right, rgba(255,0,0,0), #242f3f);}
+  background-image: linear-gradient(to right, rgba(255, 0, 0, 0), #242f3f);
+}
 .content {
   display: flex;
   justify-content: center;
