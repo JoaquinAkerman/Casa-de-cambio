@@ -1,11 +1,16 @@
-
-
 #nueva-moneda {
   text-transform: uppercase;
 }
 
-.clikeado{
-  background-color:#a33f38
+seleccion-de-moneda{
+  font-size: 50px;
+}
+cambiar-fechas{
+  font-size: 50px;
+}
+
+.activo {
+  background-color: #a33f38;
 }
 
 .oculto {
@@ -14,9 +19,19 @@
 #bandera-de-moneda {
   size: 5px;
 }
-#moneda {
-  font-size: 120;
+
+#fecha {
+  font-size: 50px;
 }
+#descripcion {
+  font-size: 40px;
+}
+
+#boton-actualizar-tabla {
+  display: flex;
+  justify-content: center;
+}
+
 body {
   margin: 0;
   padding: 0;

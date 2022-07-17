@@ -18,7 +18,7 @@
       #grad1 {
         height: 500px;
         background-color: whitesmoke; /* For browsers that do not support gradients */
-        background-image: linear-gradient(blue, white);
+        background-image: linear-gradient(blue, whitesmoke);
       }
     </style>
   </head>
@@ -32,44 +32,41 @@
       <div class="loader-wrapper">
         <span class="loader"><span class="loader-inner"></span></span>
       </div>
-
-      <h3>
-        <div id="seleccion-de-moneda">
-          Seleccione moneda
-          <input
-            id="nueva-moneda"
-            list="lista-monedas"
-            name="cambiar-base"
-            value=""
-          />
-          <datalist id="lista-monedas"> </datalist>
-        </div>
-        <div id="cambiar-fechas">
-          Ver cambios días anteriores
-          <input id="calendario" type="date" />
-          <button
-            id="boton-actualizar-tabla"
-            type="button"
-            class="btn btn-primary"
-          >
-            Actualizar tabla
-          </button>
-        </div>
-      </h3>
+      <div id="seleccion-de-moneda">
+        Seleccione moneda
+        <input
+          type="text"
+          id="nueva-moneda"
+          list="lista-monedas"
+          value=""
+          placeholder="seleccione moneda"
+        />
+        <datalist id="lista-monedas"> </datalist>
+      </div>
+      <div id="cambiar-fechas">
+        Ver cambios días anteriores
+        <input id="calendario" type="date" />
+        <br />
+        <button
+          id="boton-actualizar-tabla"
+          type="button"
+          class="btn btn-primary"
+        >
+          Actualizar tabla
+        </button>
+      </div>
 
       <br />
 
-      <h4 class="text-center" id="fecha">Cargando...</h4>
-      <h4 class="text-center" id="descripcion"></h4>
+      <div class="text-center" id="fecha">Cargando...</div>
+      <div class="text-center" id="descripcion"></div>
     </div>
-    <ul>
-      <div style="font-size: 50px" id="tabla-de-cambios" class="container">
-        <div id="linea-1" class="row">
-          <div id="moneda" class="col-sm">Moneda</div>
-          <div id="precio" class="col-sm">Precio</div>
-        </div>
+    <div style="font-size: 50px" id="tabla-de-cambios" class="container">
+      <div id="linea-1" class="row">
+        <div id="moneda" class="col-sm">Moneda</div>
+        <div id="precio" class="col-sm">Precio</div>
       </div>
-    </ul>
+    </div>
 
     <script>
       $(window).on('load', function () {

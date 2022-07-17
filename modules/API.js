@@ -1,4 +1,5 @@
 import { armarPagina } from './dom.js';
+const exchangeURL = 'https://api.exchangerate.host/latest';
 
 async function cargarMonedas(paginaAPI) {
   return fetch(paginaAPI)
@@ -13,4 +14,4 @@ function inicializar(exchangeURL) {
   cargarMonedas(exchangeURL).then((cambios) => armarPagina(cambios));
 }
 
-export { inicializar, cargarMonedas };
+export { inicializar, cargarMonedas, exchangeURL };

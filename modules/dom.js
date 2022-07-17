@@ -28,15 +28,23 @@ function armarTablaDeCambios(monedasYPrecio) {
       cargarMonedasDesdeTabla(`${botonMoneda.value}`);
     });
     $filaMoneda.append(botonMoneda);
-
-    $filaPrecio.append(
-      `<li class="list-group-item precio">${monedasYPrecio[item]}</li>`,
-    );
-    $listaMonedas.append(`<option value="${item}">`);
+    const precio = document.createElement('li');
+    precio.classList = 'list-group-item precio';
+    precio.innerText = `${monedasYPrecio[item]}`;
+    $filaPrecio.append(precio);
+    const opcionMoneda = document.createElement('option');
+    opcionMoneda.innerText = `${item}`;
+    $listaMonedas.append(opcionMoneda);
   });
 }
 
-// Tengo que llamar a inicializar con la url, con el valor del boton clickeado
+function limpiarInputMoneda() {
+  const $seleccioneMoneda = document.querySelector('#nueva-moneda');
+  $seleccioneMoneda.addEventListener('click', (event) => {
+    console.log('limpie el input');
+    $seleccioneMoneda.value = '';
+  });
+}
 
 function limpiarCampos() {
   $('.precio').remove();
@@ -59,6 +67,7 @@ function actualizarContenido(monedasJSON) {
 }
 
 async function armarPagina(monedasJSON) {
+  limpiarInputMoneda();
   mostrarDiaYMoneda(monedasJSON.date, monedasJSON.base);
   definirFechaMaximaCalendario();
   armarTablaDeCambios(monedasJSON.rates);

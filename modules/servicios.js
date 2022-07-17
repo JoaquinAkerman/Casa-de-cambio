@@ -5,10 +5,9 @@ import {
   actualizarContenido,
 } from './dom.js';
 
-import { cargarMonedas, inicializar } from './API.js';
+import { cargarMonedas } from './API.js';
 
 function cambiarMonedaBaseYFecha(monedasValidas) {
-  console.log(monedasValidas);
   const nuevaMonedaBase = $('#nueva-moneda').val();
   const nuevaFecha = $('#calendario').val();
   let fechaPorDefault = 'latest';
@@ -44,19 +43,11 @@ function cambiarMonedaBaseYFecha(monedasValidas) {
   }
 }
 
-function cargarMonedasDesdeTabla(valueBotonClickeado) {
-  const $listaMonedas = $('#lista-monedas');
-  const $selectorDeMoneda = $('#seleccion-de-moneda');
-  const nuevaMonedaBase = valueBotonClickeado;
-  const nuevaFecha = $('#calendario').val();
-  let fechaPorDefault = 'latest';
-  if (nuevaFecha != '') {
-    fechaPorDefault = nuevaFecha;
-  }
-  const nuevaPaginaAPI = `https://api.exchangerate.host/${fechaPorDefault}?base=${nuevaMonedaBase}`;
-  limpiarCampos();
-  remueveClaseAlert($selectorDeMoneda);
-  inicializar(nuevaPaginaAPI);
+async function cargarMonedasDesdeTabla(valueBotonClickeado) {
+  const $selectorDeMoneda = document.querySelector('#nueva-moneda');
+  const $botonActualizar = document.querySelector('#boton-actualizar-tabla');
+  $selectorDeMoneda.value = `${valueBotonClickeado}`;
+  $botonActualizar.click();
 }
 
 export { cambiarMonedaBaseYFecha, cargarMonedasDesdeTabla };
