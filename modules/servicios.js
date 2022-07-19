@@ -12,13 +12,11 @@ function cambiarMonedaBaseYFecha(monedasValidas) {
   const nuevaFecha = $('#calendario').val();
   let fechaPorDefault = 'latest';
   const selectorDeMoneda = $('#seleccion-de-moneda');
-
   let monedaEsValida = 'no';
   if (nuevaFecha != '') {
     fechaPorDefault = nuevaFecha;
   }
   const nuevaPaginaAPI = `https://api.exchangerate.host/${fechaPorDefault}?base=${nuevaMonedaBase}`;
-
   for (let i = 0; i < monedasValidas.length; i++) {
     if (nuevaMonedaBase === monedasValidas[i]) {
       monedaEsValida = 'si';
@@ -41,6 +39,15 @@ function cambiarMonedaBaseYFecha(monedasValidas) {
   if (monedaEsValida === 'no') {
     agregaClaseAlert(selectorDeMoneda);
   }
+  mostrarBanderaMonedaActiva(nuevaMonedaBase);
+}
+
+function mostrarBanderaMonedaActiva(valueDeMoneda) {
+  const $banderaDeMoneda = document.querySelector('#bandera-moneda');
+  const codigoDeBandera = valueDeMoneda.substring(0, 2).toLowerCase();
+
+  $banderaDeMoneda.classList = `fi fi-${codigoDeBandera}`;
+  console.log(codigoDeBandera);
 }
 
 async function cargarMonedasDesdeTabla(valueBotonClickeado) {

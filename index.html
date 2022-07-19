@@ -21,7 +21,7 @@
     <style>
       #grad1 {
         height: 500px;
-        background-color: whitesmoke; /* For browsers that do not support gradients */
+        background-color: whitesmoke;
         background-image: linear-gradient(blue, whitesmoke);
       }
     </style>
@@ -37,6 +37,7 @@
           alt="imagen-monedas"
         />
       </h1>
+
       <div class="loader-wrapper">
         <span class="loader"><span class="loader-inner"></span></span>
       </div>
@@ -64,15 +65,18 @@
 
       <br />
 
-      <div class="text-center" id="fecha">Cargando...</div>
-      <div class="text-center" id="descripcion"></div>
+      <div style="text-align: center">
+        <div id="fecha">Cargando...</div>
+        <div id="descripcion"></div>
+        <span id="bandera-moneda" class="fi fi-eu"></span>
+      </div>
     </div>
 
     <table id="tabla-de-cambios" class="table-secondary">
       <thead>
         <tr>
-          <th scope="col">moneda</th>
-          <th scope="col">precio</th>
+          <th scope="col">Moneda</th>
+          <th scope="col">Precio</th>
         </tr>
       </thead>
       <tbody>

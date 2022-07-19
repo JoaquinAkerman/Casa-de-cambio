@@ -1,29 +1,41 @@
 #nueva-moneda {
+  border-radius: 5px;
   text-transform: uppercase;
 }
+#calendario {
+  border-radius: 5px;
+}
 
-#cabecera{  width: 700px;}
+#cabecera {
+  width: 700px;
+}
+#bandera-moneda{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
 
 #tabla-de-cambios {
   margin-left: auto;
   margin-right: auto;
   border-radius: 5px;
   background-color: transparent;
-
 }
-#imagen-titulo{
+#imagen-titulo {
   border-radius: 5px;
 }
 h1 {
-  font-size: 60px;
+  font-size: 50px;
 }
 
 #seleccion-de-moneda {
-  font-size: 30px;
+  font-size: 20px;
 }
 #cambiar-fechas {
-  font-size: 30px;
+  font-size: 20px;
 }
+
+.moneda-activa{background-color: red;}
 
 .moneda {
   border-radius: 5px;
@@ -46,10 +58,10 @@ h1 {
 }
 
 #fecha {
-  font-size: 30px;
+  font-size: 20px;
 }
 #descripcion {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 #boton-actualizar-tabla {
