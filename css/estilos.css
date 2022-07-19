@@ -2,15 +2,40 @@
   text-transform: uppercase;
 }
 
-seleccion-de-moneda{
-  font-size: 50px;
+#cabecera{  width: 700px;}
+
+#tabla-de-cambios {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  background-color: transparent;
+
 }
-cambiar-fechas{
-  font-size: 50px;
+#imagen-titulo{
+  border-radius: 5px;
+}
+h1 {
+  font-size: 60px;
 }
 
-.activo {
-  background-color: #a33f38;
+#seleccion-de-moneda {
+  font-size: 30px;
+}
+#cambiar-fechas {
+  font-size: 30px;
+}
+
+.moneda {
+  border-radius: 5px;
+  background-color: transparent;
+  min-width: 81px;
+  height: 50px;
+}
+.precio {
+  border-radius: 5px;
+  background-color: transparent;
+  min-width: 81px;
+  height: 50px;
 }
 
 .oculto {
@@ -21,10 +46,10 @@ cambiar-fechas{
 }
 
 #fecha {
-  font-size: 50px;
+  font-size: 30px;
 }
 #descripcion {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 #boton-actualizar-tabla {

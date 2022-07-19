@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Casa de cambios</title>
     <link rel="icon" type="image/x-icon" href="./imagenes/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/6.6.4/css/flag-icons.min.css"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
@@ -27,22 +31,24 @@
     <div id="cabecera" class="container">
       <h1 class="text-center">
         Casa de cambios
-        <img src="./imagenes/favicon.ico" alt="imagen-monedas" />
+        <img
+          id="imagen-titulo"
+          src="./imagenes/favicon.ico"
+          alt="imagen-monedas"
+        />
       </h1>
       <div class="loader-wrapper">
         <span class="loader"><span class="loader-inner"></span></span>
       </div>
       <div id="seleccion-de-moneda">
         Seleccione moneda
-        <input
-          type="text"
+        <select
+          name="nueva-moneda"
           id="nueva-moneda"
           list="lista-monedas"
-          value=""
-          placeholder="seleccione moneda"
-        />
-        <datalist id="lista-monedas"> </datalist>
+        ></select>
       </div>
+
       <div id="cambiar-fechas">
         Ver cambios días anteriores
         <input id="calendario" type="date" />
@@ -61,12 +67,21 @@
       <div class="text-center" id="fecha">Cargando...</div>
       <div class="text-center" id="descripcion"></div>
     </div>
-    <div style="font-size: 50px" id="tabla-de-cambios" class="container">
-      <div id="linea-1" class="row">
-        <div id="moneda" class="col-sm">Moneda</div>
-        <div id="precio" class="col-sm">Precio</div>
-      </div>
-    </div>
+
+    <table id="tabla-de-cambios" class="table-secondary">
+      <thead>
+        <tr>
+          <th scope="col">moneda</th>
+          <th scope="col">precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th id="moneda" scope="row"></th>
+          <td id="precio"></td>
+        </tr>
+      </tbody>
+    </table>
 
     <script>
       $(window).on('load', function () {
