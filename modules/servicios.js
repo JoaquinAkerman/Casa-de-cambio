@@ -3,29 +3,21 @@ import {
   remueveClaseAlert,
   agregaClaseAlert,
   actualizarContenido,
+  mostrarBanderaMonedaActiva,
 } from './dom.js';
 
-async function cargarMonedas(paginaAPI) {
-  return fetch(paginaAPI)
-    .then((r) => r.json())
-
-    .catch((error) =>
-      console.error('falló cargar la tabla, intente nuevamente', error),
-    );
-}
+import { cargarMonedas } from './API.js';
 
 function cambiarMonedaBaseYFecha(monedasValidas) {
-  monedasValidas.push('EUR'); //la api no devuleve EUR
-  let nuevaMonedaBase = $('#nueva-moneda').val();
-  let nuevaFecha = $('#calendario').val();
+  const nuevaMonedaBase = $('#nueva-moneda').val();
+  const nuevaFecha = $('#calendario').val();
   let fechaPorDefault = 'latest';
   const selectorDeMoneda = $('#seleccion-de-moneda');
   let monedaEsValida = 'no';
   if (nuevaFecha != '') {
     fechaPorDefault = nuevaFecha;
   }
-  let nuevaPaginaAPI = `https://api.exchangerate.host/${fechaPorDefault}?base=${nuevaMonedaBase}`;
-
+  const nuevaPaginaAPI = `https://api.exchangerate.host/${fechaPorDefault}?base=${nuevaMonedaBase}`;
   for (let i = 0; i < monedasValidas.length; i++) {
     if (nuevaMonedaBase === monedasValidas[i]) {
       monedaEsValida = 'si';
@@ -48,6 +40,14 @@ function cambiarMonedaBaseYFecha(monedasValidas) {
   if (monedaEsValida === 'no') {
     agregaClaseAlert(selectorDeMoneda);
   }
+  mostrarBanderaMonedaActiva(nuevaMonedaBase);
 }
 
-export { cargarMonedas, cambiarMonedaBaseYFecha };
+async function cargarMonedasDesdeTabla(valueBotonClickeado) {
+  const $selectorDeMoneda = document.querySelector('#nueva-moneda');
+  const $botonActualizar = document.querySelector('#boton-actualizar-tabla');
+  $selectorDeMoneda.value = `${valueBotonClickeado}`;
+  $botonActualizar.click();
+}
+
+export { cambiarMonedaBaseYFecha, cargarMonedasDesdeTabla };

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/joaquinluis/Casa-de-cambio.Tarea-clase-12#readme",
   "dependencies": {
+    "flag-icon-css": "^4.1.7",
     "jquery": "^3.5.1"
   },
   "devDependencies": {
