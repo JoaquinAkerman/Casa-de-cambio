@@ -2,9 +2,9 @@ import {
   cambiarMonedaBaseYFecha,
   cargarMonedasDesdeTabla,
 } from './servicios.js';
-function mostrarDiaYMoneda(dia, moneda) {
+function mostrarDiaYMoneda(dia, moneda, monedasJSON) {
   $('#fecha').text(`En el día ${dia}`);
-  $('#descripcion').text(`1 ${moneda} es igual a:`);
+  $('#descripcion').text(`1 ${moneda} es igual a ${monedasJSON.USD} dolares`);
 }
 
 function definirFechaMaximaCalendario() {
@@ -44,7 +44,7 @@ function armarTablaDeCambios(monedasYPrecio) {
 function limpiarCampos() {
   $('.precio').remove();
   $('.moneda').remove();
-  $('#lista-monedas').html('');
+  $('#nueva-moneda').html('');
 }
 function remueveClaseAlert(input) {
   input.removeClass('alert');
@@ -56,21 +56,31 @@ function agregaClaseAlert(input) {
 }
 
 function actualizarContenido(monedasJSON) {
-  mostrarDiaYMoneda(monedasJSON.date, monedasJSON.base);
+  mostrarDiaYMoneda(monedasJSON.date, monedasJSON.base, monedasJSON.rates);
   definirFechaMaximaCalendario();
   armarTablaDeCambios(monedasJSON.rates);
 }
 
 async function armarPagina(monedasJSON) {
-  mostrarDiaYMoneda(monedasJSON.date, monedasJSON.base);
+  mostrarDiaYMoneda(monedasJSON.date, monedasJSON.base, monedasJSON.rates);
   definirFechaMaximaCalendario();
   armarTablaDeCambios(monedasJSON.rates);
   $('#boton-actualizar-tabla').on('click', () => {
     cambiarMonedaBaseYFecha(Object.keys(monedasJSON.rates));
   });
 }
+function mostrarBanderaMonedaActiva(valueDeMoneda) {
+  const $banderaDeMoneda = document.querySelector('#bandera-moneda');
+  if (valueDeMoneda === 'BTC') {
+    $banderaDeMoneda.classList = '';
+  } else {
+    const codigoDeBandera = valueDeMoneda.substring(0, 2).toLowerCase();
+    $banderaDeMoneda.classList = `fi fi-${codigoDeBandera}`;
+  }
+}
 
 export {
+  mostrarBanderaMonedaActiva,
   armarPagina,
   limpiarCampos,
   remueveClaseAlert,

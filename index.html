@@ -28,65 +28,65 @@
   </head>
 
   <body>
-    <div id="cabecera" class="container">
-      <h1 class="text-center">
-        Casa de cambios
-        <img
-          id="imagen-titulo"
-          src="./imagenes/favicon.ico"
-          alt="imagen-monedas"
-        />
-      </h1>
+    <div id="general">
+      <div id="cabecera" class="container">
+        <h1 class="text-center">
+          Casa de cambios
+          <img
+            id="imagen-titulo"
+            src="./imagenes/favicon.ico"
+            alt="imagen-monedas"
+          />
+        </h1>
 
-      <div class="loader-wrapper">
-        <span class="loader"><span class="loader-inner"></span></span>
-      </div>
-      <div id="seleccion-de-moneda">
-        Seleccione moneda
-        <select
-          name="nueva-moneda"
-          id="nueva-moneda"
-          list="lista-monedas"
-        ></select>
-      </div>
+        <div class="loader-wrapper">
+          <span class="loader"><span class="loader-inner"></span></span>
+        </div>
+        <div id="seleccion-de-moneda">
+          Seleccione moneda
+          <select
+            name="nueva-moneda"
+            id="nueva-moneda"
+            list="lista-monedas"
+          ></select>
+        </div>
 
-      <div id="cambiar-fechas">
-        Ver cambios días anteriores
-        <input id="calendario" type="date" />
+        <div id="cambiar-fechas">
+          Ver cambios días anteriores
+          <input id="calendario" type="date" />
+          <br />
+          <button
+            id="boton-actualizar-tabla"
+            type="button"
+            class="btn btn-primary"
+          >
+            Actualizar tabla
+          </button>
+        </div>
+
         <br />
-        <button
-          id="boton-actualizar-tabla"
-          type="button"
-          class="btn btn-primary"
-        >
-          Actualizar tabla
-        </button>
+        <div style="text-align: center">
+          <div id="fecha">Cargando...</div>
+          <span id="bandera-moneda" class="fi fi-eu"> </span>
+          <div id="descripcion"></div>
+        </div>
       </div>
 
-      <br />
-
-      <div style="text-align: center">
-        <div id="fecha">Cargando...</div>
-        <div id="descripcion"></div>
-        <span id="bandera-moneda" class="fi fi-eu"></span>
-      </div>
+      <table id="tabla-de-cambios" class="table-secondary">
+        <thead>
+          <tr>
+            <th scope="col">Moneda</th>
+            <th scope="col">Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th id="moneda" scope="row"></th>
+            <td id="precio"></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <table id="tabla-de-cambios" class="table-secondary">
-      <thead>
-        <tr>
-          <th scope="col">Moneda</th>
-          <th scope="col">Precio</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th id="moneda" scope="row"></th>
-          <td id="precio"></td>
-        </tr>
-      </tbody>
-    </table>
-
     <script>
       $(window).on('load', function () {
         $('.loader-wrapper').fadeOut('slow');

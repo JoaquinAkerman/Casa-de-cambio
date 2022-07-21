@@ -3,6 +3,7 @@ import {
   remueveClaseAlert,
   agregaClaseAlert,
   actualizarContenido,
+  mostrarBanderaMonedaActiva,
 } from './dom.js';
 
 import { cargarMonedas } from './API.js';
@@ -40,14 +41,6 @@ function cambiarMonedaBaseYFecha(monedasValidas) {
     agregaClaseAlert(selectorDeMoneda);
   }
   mostrarBanderaMonedaActiva(nuevaMonedaBase);
-}
-
-function mostrarBanderaMonedaActiva(valueDeMoneda) {
-  const $banderaDeMoneda = document.querySelector('#bandera-moneda');
-  const codigoDeBandera = valueDeMoneda.substring(0, 2).toLowerCase();
-
-  $banderaDeMoneda.classList = `fi fi-${codigoDeBandera}`;
-  console.log(codigoDeBandera);
 }
 
 async function cargarMonedasDesdeTabla(valueBotonClickeado) {
