@@ -1,3 +1,5 @@
+body{color: black;}
+
 #nueva-moneda {
   border-radius: 5px;
   text-transform: uppercase;
@@ -20,7 +22,22 @@
   height: 40px;
 }
 
+#resultados{
+  box-shadow: 2px 2px 5px black;
+  border-style: groove;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  max-width: 400px;
+  background-image: linear-gradient(to right, rgba(255, 0, 0, 0), #242f3f);
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+
 #general{
+  box-shadow: 2px 2px 5px black;
   border: 7px;
   border-color: gray;
   border-style: groove;
@@ -31,6 +48,7 @@
   max-width: 700px;
 }
 #tabla-de-cambios {
+  box-shadow: 2px 2px 5px black;
   border-style: groove;
   margin-left: auto;
   margin-right: auto;
@@ -43,7 +61,6 @@
 h1 {
   font-size: 50px;
 }
-
 #seleccion-de-moneda {
   font-size: 20px;
 }
