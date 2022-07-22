@@ -3,8 +3,20 @@ import {
   cargarMonedasDesdeTabla,
 } from './servicios.js';
 function mostrarDiaYMoneda(dia, moneda, monedasJSON) {
-  $('#fecha').text(`En el día ${dia}`);
-  $('#descripcion').text(`1 ${moneda} es igual a ${monedasJSON.USD} dolares`);
+  const $botonesDeTabla = document.querySelectorAll('.moneda');
+  const $descripcion = document.querySelector('#descripcion');
+  const $fecha = document.querySelector('#fecha');
+  $descripcion.textContent = '';
+  $fecha.textContent = `En el día ${dia}`;
+  const imagenBanderaMonedaActiva = document.createElement('span');
+  imagenBanderaMonedaActiva.id = 'bandera-moneda';
+  $descripcion.append(imagenBanderaMonedaActiva);
+  $descripcion.append(` 1 ${moneda} es igual a ${monedasJSON.USD} dolares `);
+  const banderaMonedaDolar = document.createElement('span');
+  banderaMonedaDolar.classList = 'fi fi-us';
+  banderaMonedaDolar.id = 'bandera-moneda-dolar';
+  $descripcion.append(banderaMonedaDolar);
+  mostrarBanderaMonedaActivaYSeteaValue(moneda);
 }
 
 function definirFechaMaximaCalendario() {
@@ -56,9 +68,9 @@ function agregaClaseAlert(input) {
 }
 
 function actualizarContenido(monedasJSON) {
-  mostrarDiaYMoneda(monedasJSON.date, monedasJSON.base, monedasJSON.rates);
   definirFechaMaximaCalendario();
   armarTablaDeCambios(monedasJSON.rates);
+  mostrarDiaYMoneda(monedasJSON.date, monedasJSON.base, monedasJSON.rates);
 }
 
 async function armarPagina(monedasJSON) {
@@ -69,7 +81,9 @@ async function armarPagina(monedasJSON) {
     cambiarMonedaBaseYFecha(Object.keys(monedasJSON.rates));
   });
 }
-function mostrarBanderaMonedaActiva(valueDeMoneda) {
+function mostrarBanderaMonedaActivaYSeteaValue(valueDeMoneda) {
+  const $selectorDeMoneda = document.querySelector('#nueva-moneda');
+  $selectorDeMoneda.value = valueDeMoneda;
   const $banderaDeMoneda = document.querySelector('#bandera-moneda');
   if (valueDeMoneda === 'BTC') {
     $banderaDeMoneda.classList = '';
@@ -80,7 +94,6 @@ function mostrarBanderaMonedaActiva(valueDeMoneda) {
 }
 
 export {
-  mostrarBanderaMonedaActiva,
   armarPagina,
   limpiarCampos,
   remueveClaseAlert,

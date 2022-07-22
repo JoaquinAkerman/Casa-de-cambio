@@ -3,7 +3,6 @@ import {
   remueveClaseAlert,
   agregaClaseAlert,
   actualizarContenido,
-  mostrarBanderaMonedaActiva,
 } from './dom.js';
 
 import { cargarMonedas } from './API.js';
@@ -40,7 +39,6 @@ function cambiarMonedaBaseYFecha(monedasValidas) {
   if (monedaEsValida === 'no') {
     agregaClaseAlert(selectorDeMoneda);
   }
-  mostrarBanderaMonedaActiva(nuevaMonedaBase);
 }
 
 async function cargarMonedasDesdeTabla(valueBotonClickeado) {
