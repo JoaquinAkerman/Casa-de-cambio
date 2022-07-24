@@ -3,7 +3,13 @@ import {
   cargarMonedasDesdeTabla,
 } from './servicios.js';
 function mostrarDiaYMoneda(dia, moneda, monedasJSON) {
-  const $botonesDeTabla = document.querySelectorAll('.moneda');
+  const $monedaEnCabeceraDeTabla = document.querySelector(
+    '#moneda-en-cabecera',
+  );
+  const $precioEnCabeceraDeTabla = document.querySelector(
+    '#precio-en-cabecera',
+  );
+  $precioEnCabeceraDeTabla.innerText = `Precio en ${moneda}`;
   const $descripcion = document.querySelector('#descripcion');
   const $fecha = document.querySelector('#fecha');
   $descripcion.textContent = '';
@@ -11,7 +17,7 @@ function mostrarDiaYMoneda(dia, moneda, monedasJSON) {
   const imagenBanderaMonedaActiva = document.createElement('span');
   imagenBanderaMonedaActiva.id = 'bandera-moneda';
   $descripcion.append(imagenBanderaMonedaActiva);
-  $descripcion.append(` 1 ${moneda} es igual a ${monedasJSON.USD} dolares `);
+  $descripcion.append(` 1 ${moneda} es igual a ${monedasJSON.USD} dólares `);
   const banderaMonedaDolar = document.createElement('span');
   banderaMonedaDolar.classList = 'fi fi-us';
   banderaMonedaDolar.id = 'bandera-moneda-dolar';
@@ -23,9 +29,17 @@ function definirFechaMaximaCalendario() {
   let fechaActual = new Date().toISOString().split('T');
   const calendario = $('#calendario');
   calendario.attr('max', fechaActual[0]);
+  calendario.attr('value', fechaActual[0]);
+  calendario.attr('min', '2000-01-01');
 }
 
 function armarTablaDeCambios(monedasYPrecio) {
+  if (monedasYPrecio == undefined) {
+    alert(
+      'sucedio un error, vamos a intentar nuevamente',
+      window.location.reload(),
+    );
+  }
   const $filaMoneda = $('#moneda');
   const $filaPrecio = $('#precio');
   const $listaMonedas = $('#nueva-moneda');
