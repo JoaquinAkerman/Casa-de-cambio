@@ -1,4 +1,6 @@
-body{color: black;}
+body {
+  color: black;
+}
 
 #nueva-moneda {
   border-radius: 5px;
@@ -11,18 +13,18 @@ body{color: black;}
 #cabecera {
   width: 700px;
 }
-#bandera-moneda{
+#bandera-moneda {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 }
- 
-#imagen-agregada{
+
+#imagen-agregada {
   width: 40px;
   height: 40px;
 }
 
-#resultados{
+#resultados {
   box-shadow: 2px 2px 5px black;
   border-style: groove;
   margin-left: auto;
@@ -35,8 +37,7 @@ body{color: black;}
   padding-top: 10px;
 }
 
-
-#general{
+#general {
   box-shadow: 2px 2px 5px black;
   border: 7px;
   border-color: gray;
@@ -53,7 +54,8 @@ body{color: black;}
   margin-left: auto;
   margin-right: auto;
   border-radius: 5px;
-  background-color: transparent;
+  background-color: transparent
+
 }
 #imagen-titulo {
   border-radius: 5px;
@@ -68,15 +70,43 @@ h1 {
   font-size: 20px;
 }
 
-.moneda-activa{background-color: red;}
+.moneda-activa {
+  background-color: red;
+}
 
 .moneda {
+  box-shadow: 2px 2px 5px black;
+  border-style: groove;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  max-width: 400px;
+  background-image: linear-gradient(to right, rgba(255, 0, 0, 0), #242f3f);
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 5px;
+
   border-radius: 5px;
   background-color: transparent;
   min-width: 81px;
   height: 50px;
 }
+sacados {
+  border-style: groove;
+  box-shadow: 2px 2px 5px black;
+  border-radius: 5px;
+
+}
 .precio {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 400px;
+  background-image: linear-gradient(to left, rgba(255, 0, 0, 0), #242f3f);
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+
   border-radius: 5px;
   background-color: transparent;
   min-width: 81px;
