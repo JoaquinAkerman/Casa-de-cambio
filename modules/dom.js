@@ -2,6 +2,7 @@ import {
   cambiarMonedaBaseYFecha,
   cargarMonedasDesdeTabla,
 } from './servicios.js';
+import { inicializar, exchangeURL } from './API.js';
 function mostrarDiaYMoneda(dia, moneda, monedasJSON) {
   const $monedaEnCabeceraDeTabla = document.querySelector(
     '#moneda-en-cabecera',
@@ -44,29 +45,30 @@ function armarTablaDeCambios(monedasYPrecio) {
     setTimeout(function () {
       location.reload();
     }, 2000);
-  }
-  Object.keys(monedasYPrecio)
-    .sort()
-    .forEach((item) => {
-      const botonMoneda = document.createElement('button');
-      botonMoneda.innerText = item;
-      botonMoneda.classList = ' list-group-item moneda ';
-      botonMoneda.value = item;
-      botonMoneda.id = item;
+  } else {
+    Object.keys(monedasYPrecio)
+      .sort()
+      .forEach((item) => {
+        const botonMoneda = document.createElement('button');
+        botonMoneda.innerText = item;
+        botonMoneda.classList = ' list-group-item moneda ';
+        botonMoneda.value = item;
+        botonMoneda.id = item;
 
-      botonMoneda.addEventListener('click', () => {
-        cargarMonedasDesdeTabla(`${botonMoneda.value}`);
+        botonMoneda.addEventListener('click', () => {
+          cargarMonedasDesdeTabla(`${botonMoneda.value}`);
+        });
+        $filaMoneda.append(botonMoneda);
+        const precio = document.createElement('li');
+        precio.classList = 'list-group-item precio';
+        precio.innerText = `${monedasYPrecio[item]}`;
+        $filaPrecio.append(precio);
+        const opcionMoneda = document.createElement('option');
+        opcionMoneda.innerText = `${item}`;
+        opcionMoneda.value = item;
+        $listaMonedas.append(opcionMoneda);
       });
-      $filaMoneda.append(botonMoneda);
-      const precio = document.createElement('li');
-      precio.classList = 'list-group-item precio';
-      precio.innerText = `${monedasYPrecio[item]}`;
-      $filaPrecio.append(precio);
-      const opcionMoneda = document.createElement('option');
-      opcionMoneda.innerText = `${item}`;
-      opcionMoneda.value = item;
-      $listaMonedas.append(opcionMoneda);
-    });
+  }
 }
 
 function limpiarCampos() {
