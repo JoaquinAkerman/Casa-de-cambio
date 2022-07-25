@@ -32,17 +32,19 @@ function definirFechaMaximaCalendario() {
   calendario.attr('value', fechaActual[0]);
   calendario.attr('min', '2000-01-01');
 }
-
 function armarTablaDeCambios(monedasYPrecio) {
-  if (monedasYPrecio == undefined) {
-    alert(
-      'sucedio un error, vamos a intentar nuevamente',
-      window.location.reload(),
-    );
-  }
+  const $resultados = document.querySelector('#resultados');
   const $filaMoneda = $('#moneda');
   const $filaPrecio = $('#precio');
   const $listaMonedas = $('#nueva-moneda');
+  if (monedasYPrecio == undefined) {
+    $resultados.textContent = 'sucedió un error, vamos a intentar nuevamente';
+    $resultados.classList = 'resaltar';
+    document.querySelector('#calendario').valueAsDate = new Date();
+    setTimeout(function () {
+      location.reload();
+    }, 2000);
+  }
   Object.keys(monedasYPrecio)
     .sort()
     .forEach((item) => {
